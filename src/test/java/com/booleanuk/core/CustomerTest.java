@@ -32,8 +32,8 @@ public class CustomerTest {
         customer.createAccount("savings");
         customer.createAccount("current");
 
-        Assertions.assertTrue(customer.depositFunds(1, 100));
-        Assertions.assertTrue(customer.depositFunds(2, 100000));
+        Assertions.assertTrue(customer.depositFunds(0, 100));
+        Assertions.assertTrue(customer.depositFunds(1, 100000));
     }
 
     @Test
@@ -41,8 +41,8 @@ public class CustomerTest {
         Customer customer = new Customer();
         customer.createAccount("savings");
         customer.createAccount("current");
-        Assertions.assertFalse(customer.depositFunds(1, -100));
-        Assertions.assertFalse(customer.depositFunds(2, 0));
+        Assertions.assertFalse(customer.depositFunds(0, -100));
+        Assertions.assertFalse(customer.depositFunds(1, 0));
     }
 
 }

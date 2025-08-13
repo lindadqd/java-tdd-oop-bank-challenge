@@ -1,5 +1,6 @@
 package com.booleanuk.core;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,15 @@ public abstract class Account {
         this.accountId = nextId++;
     }
 
-    public Boolean depositFunds(float amount) {
-        return null;
+    public boolean depositFunds(float amount) {
+        if (amount > 0){
+            balance += amount;
+            transactions.add(new Transaction(LocalDate.now(),this.balance, amount, "credit"));
+            return true;
+        } return false;
+    }
+
+    public int getId() {
+        return this.accountId;
     }
 }

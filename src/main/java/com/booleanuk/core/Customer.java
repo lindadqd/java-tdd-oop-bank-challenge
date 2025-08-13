@@ -23,7 +23,15 @@ public class Customer {
     }
 
 
-    public Boolean depositFunds(int accountId, int i) {
-        return null;
+    public boolean depositFunds(int accountId, float amount) {
+        if (!accounts.isEmpty() && amount > 0) {
+            for (Account account : accounts) {
+                if (account.getId() == accountId) {
+                    account.depositFunds(amount);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

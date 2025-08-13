@@ -11,7 +11,7 @@ public class AccountTest {
         Account current = new Current();
 
         Assertions.assertTrue(savings.depositFunds(100));
-        Assertions.assertTrue(savings.depositFunds(1));
+        Assertions.assertTrue(savings.depositFunds(1 ));
         Assertions.assertTrue(savings.depositFunds(100.10F));
         Assertions.assertTrue(current.depositFunds(100));
         Assertions.assertTrue(current.depositFunds(1235678));
