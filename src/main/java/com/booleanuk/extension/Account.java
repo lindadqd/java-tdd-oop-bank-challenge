@@ -9,12 +9,14 @@ public abstract class Account {
     private List<Transaction> transactions;
     private static int nextId = 0;
     private int accountId;
+    private String branch;
+    private boolean canOverdraft;
 
     public Account(){
         this.balance = 0;
         this.transactions = new ArrayList<>();
-        this.accountId = nextId;
-        nextId++;
+        this.accountId = nextId++;
+        this.canOverdraft = false;
     }
 
     public boolean depositFunds(float amount) {
@@ -54,5 +56,21 @@ public abstract class Account {
                 } else sum -= transaction.getAmount();
             }
         } return sum;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public boolean isCanOverdraft() {
+        return canOverdraft;
+    }
+
+    public void setCanOverdraft(boolean canOverdraft) {
+        this.canOverdraft = canOverdraft;
     }
 }

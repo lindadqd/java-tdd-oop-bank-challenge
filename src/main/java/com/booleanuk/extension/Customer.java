@@ -60,4 +60,11 @@ public class Customer {
     public List<Account> getAccounts(){
         return accounts;
     }
+
+
+    public Boolean requestOverdraft(Manager manager, int accountId, float amount) {
+        return null;
+        //manager.requestOverdraft(account, amount);
+
+    }
 }
