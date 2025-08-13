@@ -45,4 +45,27 @@ public class CustomerTest {
         Assertions.assertFalse(customer.depositFunds(1, 0));
     }
 
+    @Test
+    public void withdrawFundsOk(){
+        Customer customer = new Customer();
+        customer.createAccount("savings");
+        customer.depositFunds(0, 100);
+
+        Assertions.assertTrue(customer.withdrawFunds(0, 10));
+        Assertions.assertTrue(customer.withdrawFunds(0, 20));
+        Assertions.assertTrue(customer.withdrawFunds(0, 40));
+        Assertions.assertTrue(customer.withdrawFunds(0, 1));
+    }
+
+    @Test
+    public void withdrawFundsNotOk(){
+        Customer customer = new Customer();
+        customer.createAccount("savings");
+
+        Assertions.assertFalse(customer.withdrawFunds(0,100));
+        customer.depositFunds(0, 100);
+        Assertions.assertFalse(customer.withdrawFunds(0,101));
+
+    }
+
 }

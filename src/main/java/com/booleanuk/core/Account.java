@@ -27,4 +27,8 @@ public abstract class Account {
     public int getId() {
         return this.accountId;
     }
+
+    public Boolean withdrawFunds(float amount) {
+        return null;
+    }
 }
