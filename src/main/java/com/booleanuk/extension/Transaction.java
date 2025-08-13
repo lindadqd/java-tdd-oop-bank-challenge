@@ -27,4 +27,8 @@ public class Transaction {
     public String getType() {
         return this.type;
     }
+
+    public float getAmount() {
+        return this.amount;
+    }
 }

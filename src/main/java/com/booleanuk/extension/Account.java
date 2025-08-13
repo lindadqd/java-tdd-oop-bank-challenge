@@ -45,8 +45,14 @@ public abstract class Account {
         return transactionStrings;
     }
 
-
-    public int getBalance() {
-        return -1;
+    public float getBalance(){
+        float sum = 0;
+        if (!transactions.isEmpty()){
+            for(Transaction transaction: transactions){
+                if(transaction.getType().equals("credit")){
+                    sum += transaction.getAmount();
+                } else sum -= transaction.getAmount();
+            }
+        } return sum;
     }
 }
