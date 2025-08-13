@@ -27,14 +27,27 @@ public class Customer {
         if (!accounts.isEmpty() && amount > 0) {
             for (Account account : accounts) {
                 if (account.getId() == accountId) {
-                   return account.depositFunds(amount);
+                    account.depositFunds(amount);
+                    return true;
                 }
             }
         }
         return false;
     }
 
-    public Boolean withdrawFunds(int accountId, float amount) {
-        return null;
+    public boolean withdrawFunds(int accountId, float amount) {
+        if (!accounts.isEmpty() && amount > 0) {
+            for (Account account : accounts) {
+                if (account.getId() == accountId) {
+                    account.withdrawFunds(amount);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public String generateStatement(int accountId) {
+        return "";
     }
 }

@@ -18,7 +18,7 @@ public abstract class Account {
 
     public boolean depositFunds(float amount) {
         if (amount > 0){
-            balance += amount;
+            this.balance += amount;
             transactions.add(new Transaction(LocalDate.now(),this.balance, amount, "credit"));
             return true;
         } return false;
@@ -28,7 +28,11 @@ public abstract class Account {
         return this.accountId;
     }
 
-    public Boolean withdrawFunds(float amount) {
-        return null;
+    public boolean withdrawFunds(float amount) {
+        if (amount > 0 && amount <= this.balance){
+            this.balance -= amount;
+            transactions.add(new Transaction(LocalDate.now(),this.balance, amount, "debit"));
+            return true;
+        } return false;
     }
 }

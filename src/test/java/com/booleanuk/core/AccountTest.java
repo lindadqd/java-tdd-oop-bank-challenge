@@ -35,8 +35,8 @@ public class AccountTest {
     public void withdrawFundsOk(){
         Account current = new Current();
         Account savings = new Savings();
-        current.depositFunds(1000000);
-        savings.depositFunds(1000000);
+        current.depositFunds(1000000000);
+        savings.depositFunds(1000000000);
 
         Assertions.assertTrue(current.withdrawFunds(1));
         Assertions.assertTrue(current.withdrawFunds(5000));

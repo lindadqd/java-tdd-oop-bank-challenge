@@ -47,14 +47,15 @@ public class CustomerTest {
 
     @Test
     public void withdrawFundsOk(){
-        Customer customer = new Customer();
-        customer.createAccount("savings");
-        customer.depositFunds(0, 100);
+        Customer customer1 = new Customer();
+        customer1.createAccount("savings");
+        customer1.createAccount("current");
+        customer1.depositFunds(1, 100);
 
-        Assertions.assertTrue(customer.withdrawFunds(0, 10));
-        Assertions.assertTrue(customer.withdrawFunds(0, 20));
-        Assertions.assertTrue(customer.withdrawFunds(0, 40));
-        Assertions.assertTrue(customer.withdrawFunds(0, 1));
+        Assertions.assertTrue(customer1.withdrawFunds(1, 10));
+        Assertions.assertTrue(customer1.withdrawFunds(1, 20));
+        Assertions.assertTrue(customer1.withdrawFunds(1, 40));
+        Assertions.assertTrue(customer1.withdrawFunds(1, 1));
     }
 
     @Test
@@ -65,7 +66,6 @@ public class CustomerTest {
         Assertions.assertFalse(customer.withdrawFunds(0,100));
         customer.depositFunds(0, 100);
         Assertions.assertFalse(customer.withdrawFunds(0,101));
-
     }
 
 }
