@@ -9,6 +9,7 @@ public class Customer {
     public Customer(){
         this.accounts = new ArrayList<>();
     }
+
     public boolean createAccount(String type) {
         String accountType = type.toUpperCase();
         if(accountType.equals("SAVINGS")){
@@ -19,5 +20,10 @@ public class Customer {
             return true;
         }
      return false;
+    }
+
+
+    public Boolean depositFunds(int accountId, int i) {
+        return null;
     }
 }

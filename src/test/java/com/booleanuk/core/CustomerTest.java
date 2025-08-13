@@ -26,4 +26,23 @@ public class CustomerTest {
         Assertions.assertFalse(customer.createAccount("123"));
     }
 
+    @Test
+    public void depositFundsOk(){
+        Customer customer = new Customer();
+        customer.createAccount("savings");
+        customer.createAccount("current");
+
+        Assertions.assertTrue(customer.depositFunds(1, 100));
+        Assertions.assertTrue(customer.depositFunds(2, 100000));
+    }
+
+    @Test
+    public void depositFundsNotOk(){
+        Customer customer = new Customer();
+        customer.createAccount("savings");
+        customer.createAccount("current");
+        Assertions.assertFalse(customer.depositFunds(1, -100));
+        Assertions.assertFalse(customer.depositFunds(2, 0));
+    }
+
 }

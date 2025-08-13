@@ -14,4 +14,8 @@ public abstract class Account {
         this.transactions = new ArrayList<>();
         this.accountId = nextId++;
     }
+
+    public Boolean depositFunds(float amount) {
+        return null;
+    }
 }
