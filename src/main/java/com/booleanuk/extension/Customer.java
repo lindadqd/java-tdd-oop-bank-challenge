@@ -63,8 +63,13 @@ public class Customer {
 
 
     public Boolean requestOverdraft(Manager manager, int accountId, float amount) {
-        return null;
-        //manager.requestOverdraft(account, amount);
+        if(!accounts.isEmpty()){
+            for(Account account: accounts){
+                if (account.getId() == accountId){
+                    return manager.requestOverdraft(account,amount);
+                }
+            }
+        } return false;
 
     }
 }

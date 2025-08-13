@@ -32,7 +32,7 @@ public abstract class Account {
     }
 
     public boolean withdrawFunds(float amount) {
-        if (amount > 0 && amount <= this.balance){
+        if ((amount > 0 && amount <= this.balance) || (amount > 0 && canOverdraft)){
             this.balance -= amount;
             transactions.add(new Transaction(LocalDate.now(),this.balance, amount, "debit"));
             return true;
@@ -58,19 +58,11 @@ public abstract class Account {
         } return sum;
     }
 
-    public String getBranch() {
-        return branch;
-    }
-
-    public void setBranch(String branch) {
-        this.branch = branch;
-    }
-
-    public boolean isCanOverdraft() {
-        return canOverdraft;
-    }
-
-    public void setCanOverdraft(boolean canOverdraft) {
-        this.canOverdraft = canOverdraft;
+    void withdrawFundsOverdraft(Manager manager, float amount) {
+        if (manager == null ){
+            throw new SecurityException("Only managers can change basket capacity");
+        }
+        this.balance -= amount;
+        transactions.add(new Transaction(LocalDate.now(),this.balance, amount, "debit"));
     }
 }

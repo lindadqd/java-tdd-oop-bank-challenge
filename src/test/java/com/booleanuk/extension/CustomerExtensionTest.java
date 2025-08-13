@@ -17,6 +17,29 @@ public class CustomerExtensionTest {
         Assertions.assertTrue(customer.requestOverdraft(manager, accounts.get(0).getId(), 10 ));
         Assertions.assertTrue(customer.requestOverdraft(manager, accounts.get(0).getId(), 40 ));
         Assertions.assertTrue(customer.requestOverdraft(manager, accounts.get(0).getId(), 349 ));
+        Assertions.assertFalse(customer.requestOverdraft(manager,accounts.getFirst().getId(), 1000));
+
+        String content = customer.generateStatement(accounts.get(0).getId());
+        System.out.println(content);
+
+    }
+
+    @Test
+    public void requestOverDraftOk2(){
+        Customer customer = new Customer();
+        customer.createAccount("current");
+        List<Account> accounts = customer.getAccounts();
+        Manager manager = new Manager();
+
+        customer.depositFunds(accounts.getFirst().getId(), 100);
+
+        Assertions.assertTrue(customer.requestOverdraft(manager, accounts.get(0).getId(), 400 ));
+        Assertions.assertTrue(customer.requestOverdraft(manager, accounts.get(0).getId(), 40 ));
+        Assertions.assertTrue(customer.requestOverdraft(manager, accounts.get(0).getId(), 10 ));
+
+        String content = customer.generateStatement(accounts.get(0).getId());
+        System.out.println(content);
+
     }
 
     @Test
