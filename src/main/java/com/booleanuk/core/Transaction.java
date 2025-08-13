@@ -14,4 +14,8 @@ public class Transaction {
         this.amount = amount;
         this.type = type;
     }
+
+    public String generateStatement() {
+        return "";
+    }
 }

@@ -13,7 +13,8 @@ public abstract class Account {
     public Account(){
         this.balance = 0;
         this.transactions = new ArrayList<>();
-        this.accountId = nextId++;
+        this.accountId = nextId;
+        nextId++;
     }
 
     public boolean depositFunds(float amount) {
@@ -34,5 +35,9 @@ public abstract class Account {
             transactions.add(new Transaction(LocalDate.now(),this.balance, amount, "debit"));
             return true;
         } return false;
+    }
+
+    public String generateStatement() {
+        return "";
     }
 }

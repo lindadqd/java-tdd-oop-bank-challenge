@@ -75,4 +75,18 @@ public class CustomerTest {
         Assertions.assertFalse(customer.withdrawFunds(accounts.get(0).getId(),101));
     }
 
+    @Test
+    public void generateStatement(){
+        Customer customer = new Customer();
+        customer.createAccount("savings");
+        customer.depositFunds(0, 100);
+        customer.withdrawFunds(0,10);
+
+        String content = customer.generateStatement(0);
+
+        Assertions.assertTrue(content.contains("date       || credit  || debit  || balance"));
+        Assertions.assertTrue(content.contains("100"));
+        Assertions.assertTrue(content.contains("10"));
+        Assertions.assertTrue(content.contains("90"));
+    }
 }

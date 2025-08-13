@@ -27,8 +27,7 @@ public class Customer {
         if (!accounts.isEmpty() && amount > 0) {
             for (Account account : accounts) {
                 if (account.getId() == accountId) {
-                    account.depositFunds(amount);
-                    return true;
+                    return account.depositFunds(amount);
                 }
             }
         }
@@ -39,8 +38,7 @@ public class Customer {
         if (!accounts.isEmpty() && amount > 0) {
             for (Account account : accounts) {
                 if (account.getId() == accountId) {
-                    account.withdrawFunds(amount);
-                    return true;
+                    return account.withdrawFunds(amount);
                 }
             }
         }
@@ -49,5 +47,9 @@ public class Customer {
 
     public String generateStatement(int accountId) {
         return "";
+    }
+
+    public List<Account> getAccounts(){
+        return accounts;
     }
 }

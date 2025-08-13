@@ -64,7 +64,18 @@ public class AccountTest {
         Assertions.assertFalse(current.withdrawFunds(-10));
         Assertions.assertFalse(savings.withdrawFunds(0));
         Assertions.assertFalse(current.withdrawFunds(-1));
+    }
 
+    @Test
+    public void generateStatement(){
+        Account current = new Current();
+        current.depositFunds(100);
+        current.withdrawFunds(50);
 
+        String content = current.generateStatement();
+
+        Assertions.assertTrue(content.contains("date       || credit  || debit  || balance"));
+        Assertions.assertTrue(content.contains("100"));
+        Assertions.assertTrue(content.contains("50"));;
     }
 }
