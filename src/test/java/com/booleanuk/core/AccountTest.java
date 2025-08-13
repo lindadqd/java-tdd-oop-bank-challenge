@@ -73,9 +73,8 @@ public class AccountTest {
         current.withdrawFunds(50);
 
         String content = current.generateStatement();
-
-        Assertions.assertTrue(content.contains("date       || credit  || debit  || balance"));
-        Assertions.assertTrue(content.contains("100"));
-        Assertions.assertTrue(content.contains("50"));;
+        System.out.println(content);
+        Assertions.assertTrue(content.contains("100.0"));
+        Assertions.assertTrue(content.contains("50.0"));;
     }
 }

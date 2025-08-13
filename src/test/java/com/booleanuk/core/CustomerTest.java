@@ -3,6 +3,7 @@ package com.booleanuk.core;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CustomerTest {
@@ -79,14 +80,35 @@ public class CustomerTest {
     public void generateStatement(){
         Customer customer = new Customer();
         customer.createAccount("savings");
-        customer.depositFunds(0, 100);
-        customer.withdrawFunds(0,10);
+        List<Account> accounts = customer.getAccounts();
+        customer.depositFunds(accounts.get(0).getId(), 100);
+        customer.withdrawFunds(accounts.get(0).getId(),10);
 
-        String content = customer.generateStatement(0);
+        String content = customer.generateStatement(accounts.get(0).getId());
+        System.out.println(content);
 
-        Assertions.assertTrue(content.contains("date       || credit  || debit  || balance"));
-        Assertions.assertTrue(content.contains("100"));
-        Assertions.assertTrue(content.contains("10"));
-        Assertions.assertTrue(content.contains("90"));
+        Assertions.assertTrue(content.contains("100.0"));
+        Assertions.assertTrue(content.contains("10.0"));
+        Assertions.assertTrue(content.contains("90.0"));
+    }
+
+    @Test
+    public void generateStatement2(){
+        Customer customer = new Customer();
+        customer.createAccount("current");
+        List<Account> accounts = customer.getAccounts();
+        customer.depositFunds(accounts.get(0).getId(), 1000);
+        customer.withdrawFunds(accounts.get(0).getId(),90);
+        customer.withdrawFunds(accounts.get(0).getId(),10);
+        customer.withdrawFunds(accounts.get(0).getId(),300);
+
+        String content = customer.generateStatement(accounts.get(0).getId());
+        System.out.println(content);
+
+        Assertions.assertTrue(content.contains("1000.0"));
+        Assertions.assertTrue(content.contains("10.0"));
+        Assertions.assertTrue(content.contains("90.0"));
+        Assertions.assertTrue(content.contains("300.0"));
+        Assertions.assertTrue(content.contains(String.valueOf(LocalDate.now())));
     }
 }

@@ -46,7 +46,15 @@ public class Customer {
     }
 
     public String generateStatement(int accountId) {
-        return "";
+        String transactions = String.format(" %-15s || %-15s || %-15s || %s " , "date", "credit", "debit", "balance");
+        if(!accounts.isEmpty()){
+            for(Account account: accounts){
+                if (account.getId() == accountId){
+                    transactions += account.generateStatement();
+                }
+            }
+        } return transactions;
+
     }
 
     public List<Account> getAccounts(){

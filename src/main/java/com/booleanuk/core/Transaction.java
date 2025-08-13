@@ -16,6 +16,11 @@ public class Transaction {
     }
 
     public String generateStatement() {
-        return "";
+       String transaction = "";
+        if (this.type.equals("credit")) {
+            transaction += "\n" + (String.format(" %-15s || %-15s || %-15s || %s " , String.valueOf(this.date) , this.amount, " ", this.balance ));
+        } else {
+            transaction += "\n" + (String.format(" %-15s || %-15s || %-15s || %s " , String.valueOf(this.date) , " ", this.amount, this.balance ));        }
+        return transaction;
     }
 }

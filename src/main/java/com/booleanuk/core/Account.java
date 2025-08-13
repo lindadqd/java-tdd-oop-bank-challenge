@@ -38,6 +38,10 @@ public abstract class Account {
     }
 
     public String generateStatement() {
-        return "";
+        String transactionStrings = "";
+        for(Transaction transaction : transactions){
+            transactionStrings += transaction.generateStatement();
+        }
+        return transactionStrings;
     }
 }
