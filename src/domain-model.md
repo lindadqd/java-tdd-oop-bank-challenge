@@ -32,3 +32,41 @@ As a customer:
 |             | - float amount                               |                                                    |                                             |                                                                                            |
 |             | - float balance                              |                                                    |                                             |                                                                                            |
 |             | -String accountType                          |                                                    |                                             |                                                                                            |
+
+
+
+## Extensions - user stories
+
+As an engineer,
+- I want account balances to be calculated based on transaction history instead of stored in memory.
+
+As a bank manager,
+- I want accounts to be associated with specific branches.
+- I want to approve or reject overdraft requests.
+
+As a customer,
+- I want to be able to request an overdraft on my account.
+- I want statements to be sent as messages to my phone.
+
+
+| Classes | Instance variable | Methods    | Scenario | Output |
+|---------|-------------------|------------|----------|--------|
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
+|         |                   |            |          |        |
