@@ -3,6 +3,8 @@ package com.booleanuk.core;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class CustomerTest {
 
     @Test
@@ -31,9 +33,10 @@ public class CustomerTest {
         Customer customer = new Customer();
         customer.createAccount("savings");
         customer.createAccount("current");
+        List<Account> accounts = customer.getAccounts();
 
-        Assertions.assertTrue(customer.depositFunds(0, 100));
-        Assertions.assertTrue(customer.depositFunds(1, 100000));
+        Assertions.assertTrue(customer.depositFunds(accounts.get(0).getId(), 100));
+        Assertions.assertTrue(customer.depositFunds(accounts.get(1).getId(), 100000));
     }
 
     @Test
@@ -41,31 +44,35 @@ public class CustomerTest {
         Customer customer = new Customer();
         customer.createAccount("savings");
         customer.createAccount("current");
-        Assertions.assertFalse(customer.depositFunds(0, -100));
-        Assertions.assertFalse(customer.depositFunds(1, 0));
+        List<Account> accounts = customer.getAccounts();
+
+        Assertions.assertFalse(customer.depositFunds(accounts.get(0).getId(), -100));
+        Assertions.assertFalse(customer.depositFunds(accounts.get(1).getId(), 0));
     }
 
     @Test
-    public void withdrawFundsOk(){
-        Customer customer1 = new Customer();
-        customer1.createAccount("savings");
-        customer1.createAccount("current");
-        customer1.depositFunds(1, 100);
+    public void withdrawFunds(){
+        Customer customer = new Customer();
+        customer.createAccount("savings");
+        List<Account> accounts = customer.getAccounts();
 
-        Assertions.assertTrue(customer1.withdrawFunds(1, 10));
-        Assertions.assertTrue(customer1.withdrawFunds(1, 20));
-        Assertions.assertTrue(customer1.withdrawFunds(1, 40));
-        Assertions.assertTrue(customer1.withdrawFunds(1, 1));
+        customer.depositFunds(accounts.get(0).getId(),100);
+
+        Assertions.assertTrue(customer.withdrawFunds(accounts.get(0).getId(), 10));
+        Assertions.assertTrue(customer.withdrawFunds(accounts.get(0).getId(), 20));
+        Assertions.assertTrue(customer.withdrawFunds(accounts.get(0).getId(), 40));
+        Assertions.assertTrue(customer.withdrawFunds(accounts.get(0).getId(), 1));
     }
 
     @Test
     public void withdrawFundsNotOk(){
         Customer customer = new Customer();
         customer.createAccount("savings");
+        List<Account> accounts = customer.getAccounts();
 
-        Assertions.assertFalse(customer.withdrawFunds(0,100));
-        customer.depositFunds(0, 100);
-        Assertions.assertFalse(customer.withdrawFunds(0,101));
+        Assertions.assertFalse(customer.withdrawFunds(accounts.get(0).getId(),100));
+        customer.depositFunds(accounts.get(0).getId(), 100);
+        Assertions.assertFalse(customer.withdrawFunds(accounts.get(0).getId(),101));
     }
 
 }
